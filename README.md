@@ -88,27 +88,45 @@ Citation
 
 If you use this work, please cite:
 
-bibtex
-@inproceedings{yesmin2026ai,
-  title={AI Chatbots for Dengue Symptom Triage in Bangladesh: A Decision Tree Classifier Approach},
-  author={Yesmin, Farjana},
-  booktitle={Proceedings of DASGRI-2026},
-  series={Lecture Notes in Networks and Systems},
-  publisher={Springer},
-  year={2026}
+@inproceedings{yesmin2026dengue,
+  author    = {Yesmin, Farjana},
+  title     = {AI Chatbots for Dengue Symptom Triage in Bangladesh:
+               A Decision Tree Classifier Approach},
+  booktitle = {Proceedings of DASGRI 2026, Springer LNNS, London},
+  year      = {2026},
+  note      = {Preprint: https://www.researchgate.net/publication/385935162}
 }
 
-Data Availability
+## HuggingFace Dataset
 
-Dengue Severity Data: Government of Bangladesh HEOC Dashboard
-Climate Correlation Data: Available on Kaggle
-Processed Datasets: Contact author for access
-Future Work
+The curated Bangladesh dengue datasets from this paper are publicly available:
 
-Integration with DGHS mobile applications
-Real-world clinical trials (n=500 planned)
-Expansion to other vector-borne diseases
-Real-time climate data integration
+**[fairhealth/bangladesh-dengue](https://huggingface.co/datasets/fairhealth/bangladesh-dengue)**
+
+Includes: 6 DGS surveillance tables (2019–2024), 1,000-record clinical dataset,
+climate-dengue correlation data (134 months, 2008–2022).
+
+```python
+from datasets import load_dataset
+ds = load_dataset("fairhealth/bangladesh-dengue")
+```
+
+## Part of FairHealth Library
+
+This paper's dengue triage module is available via:
+```bash
+pip install fairhealth
+```
+
+```python
+from fairhealth.lowresource.triage import assess_dengue_risk
+
+result = assess_dengue_risk(
+    age=8, gender="male", area_type="urban",
+    district="Dhaka", language="bangla"
+)
+print(result["recommendation"])  # বাংলায় উত্তর
+```
 
 Acknowledgments
 
